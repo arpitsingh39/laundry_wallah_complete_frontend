@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Lavish Laundry</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo">
+                <img src="https://thelaundrywallah.com/assets/img/bus.png" alt="Logo" class="logo-img">
+            </div>
+            <nav id="main-nav">
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">AboutUs</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                </ul>
+            </nav>
+            
+            <div class="user-section">
+                <div class="username">Random User</div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section>
+            <div class="container">
+                <div class="left-div">
+                    <h1>Your Laundry Friend To Help You Get Done With <span class="random">Your Laundry!</span></h1>
+                    <p class="para">Experience the convenience of our laundry services. We pick up, clean, and deliver your clothes right to your doorstep.</p>
+                    <a class="btn" href="#services" style="text-decoration: none;">Book a service today!</a>
+                </div>
+                <div class="right-div">
+                    <img src="https://thelaundrywallah.com/assets/img/bus.png" alt="Laundry Service" class="right-div-img">
+                </div> 
+            </div>
+        </section>
+
+        <section class="achievements">
+            <h1 class="achievement-item">Our achievements</h1>
+            <div class="achievement-item">
+                <h3>15+</h3>
+                <p>Laundry Services</p>
+            </div>
+
+            <div class="achievement-item">
+                <h3>240+</h3>
+                <p>Happy Customers</p>
+            </div>
+
+            <div class="achievement-item">
+                <h3>2+ Yrs</h3>
+                <p>Experience</p>
+            </div>
+        </section>
+
+        <section class="services" id="services">
+            <div class="our-services">
+                <h2>Our Services</h2>
+                <p class="add-border-spacing-before-line-break">Click On The Add To Cart Button To Add The Services To Your Cart</p>
+
+                <div class="service-list">
+                    <div class="service-item">
+                        <p>Dry Cleaning</p>
+                        <p class="price">&#8377;200.00</p>
+                        <button class="add-to-cart-btn" data-service="Dry Cleaning" data-price="200">Add Item</button>
+                    </div>
+
+                    <div class="service-item">
+                        <p>Wash & Fold</p>
+                        <p class="price">&#8377;100.00</p>
+                        <button class="add-to-cart-btn" data-service="Wash & Fold" data-price="100">Add Item</button>
+                    </div>
+
+                    <div class="service-item">
+                        <p>Ironing</p>
+                        <p class="price">&#8377;30.00</p>
+                        <button class="add-to-cart-btn" data-service="Ironing" data-price="30">Add Item</button>
+                    </div>
+
+                    <div class="service-item">
+                        <p>Stain Removal</p>
+                        <p class="price">&#8377;500.00</p>
+                        <button class="add-to-cart-btn" data-service="Stain Removal" data-price="500">Add Item</button>
+                    </div>
+
+                    <div class="service-item">
+                        <p>Leather & Suede Cleaning</p>
+                        <p class="price">&#8377;999.00</p>
+                        <button class="add-to-cart-btn" data-service="Leather & Suede Cleaning" data-price="999">Add Item</button>
+                    </div>
+
+                    <div class="service-item">
+                        <p>Wedding Dress Cleaning</p>
+                        <p class="price">&#8377;2800.00</p>
+                        <button class="add-to-cart-btn" data-service="Wedding Dress Cleaning" data-price="2800">Add Item</button>
+                    </div>
+                </div>
+
+                <div class="info">
+                    <p>&#9432; Add the items to the cart and book now</p>
+                </div>
+            </div>
+
+            <div class="cart-summary">
+                <div class="added-items">
+                    <h3>Added Items</h3>
+                    <table class="cart-table">
+                        <thead>
+                            <tr>
+                                <th>S.No</th>
+                                <th>Service Name</th>
+                                <th>Price</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody id="cart-items">
+                            <!-- Cart items will be added here dynamically -->
+                        </tbody>
+                    </table>
+                    <div class="total-amount">
+                        <h3>Total Amount: &#8377;<span id="total-price">0.00</span></h3>
+                    </div>
+                </div>
+
+                <div class="book-now">
+                    <h3>Book Now</h3>
+                    <form id="booking-form">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" placeholder="John Doe" required>
+
+                        <label for="email">Email ID</label>
+                        <input type="email" id="email" placeholder="john.doe@example.com" required>
+
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" placeholder="+1 234 567 890" required>
+
+                        <button type="submit" class="book-now-btn">Book Now</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section class="quality-description">
+            <div class="quality-contents">
+                <div class="quality-item">
+                    <img src="https://png.pngtree.com/png-vector/20230316/ourmid/pngtree-premium-service-line-icon-vector-png-image_6652962.png" alt="Quality Icon" class="quality-icon">
+                    <h3>Premium Service</h3>
+                    <p>Elevate your wardrobe with our meticulous dry cleaning, ensuring garments look and feel as good as new.</p>
+                </div>
+
+                <div class="quality-item">
+                    <img src="https://cdn-icons-png.flaticon.com/512/490/490341.png" alt="Quality Icon" class="quality-icon">
+                    <h3>Quick Support</h3>
+                    <p>We're committed to providing prompt solutions to ensure your experience is smooth and worry-free.</p>
+                </div>
+
+                <div class="quality-item">
+                    <img src="https://www.citypng.com/public/uploads/preview/food-delivery-motorcycle-black-icon-hd-png-701751694960594ciedjha5tg.png?v=2025081910" alt="Quality Icon" class="quality-icon">
+                    <h3>Hassle Free Delivery</h3>
+                    <p>Enjoy seamless service with our convenient pickup and delivery options, tailored to your schedule.</p>
+                </div>
+
+                <div class="quality-item">
+                    <img src="https://img.freepik.com/premium-vector/vector-design-affordable-pricing-icon-style_1134108-111397.jpg" alt="Quality Icon" class="quality-icon">
+                    <h3>Affordable Prices</h3>
+                    <p>Experience exceptional care without breaking the bank - our affordable prices make laundry day stress-free.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="newsletter">
+            <div class="newsletter">
+                <h1>Subscribe to our newsletter.</h1>
+            </div>
+
+            <div class="newsletter-form">
+                <form id="newsletter-form">
+                    <input type="text" id="name" placeholder="Full Name" required>
+                    <input type="email" id="newsletter-email" placeholder="Enter your email" required>
+                    <br>
+                    <button type="submit" class="subscribe-btn">Subscribe</button>
+                </form>
+            </div>
+        </section>
+    </main>
+
+
+    <footer class="footer-section">
+        <div class="footer-content">
+            <div class="logo-about">
+                <img src="https://thelaundrywallah.com/assets/img/bus.png" alt="Logo" class="logo-img">
+                <h3 class="about-us">About us</h3>
+                <p>We are a premium laundry service dedicated to providing top-notch cleaning and customer satisfaction.</p>
+            </div>
+
+            <div class="imp-links">
+                <h3>Important Links</h3>
+                <ul class="footer-links">
+                    <li><a href="#">About us</a></li>
+                    <li><a href="#">contact us</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms of use</a></li>
+                    <li><a href="#">Refund Policy</a></li>
+                </ul>
+            </div>
+
+            <div class="contact-info">
+                <h3>Contact Info</h3>
+                <p>123 Laundry St, Clean City, Mumbai 400050</p>
+                <p>Email: info@lavishlaundry.com</p>
+                <p>Phone: +91 98765 43210</p>
+            </div>
+
+            <div class="follow-us">
+                <h3>Follow Us</h3>
+                <div class="social-icons">
+                    <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook" class="social-icon"></a>
+                    <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Twitter" class="social-icon"></a>
+                    <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/2111/2111463.png" alt="Instagram" class="social-icon"></a>
+                    <a href="#"><img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn" class="social-icon"></a>
+                </div>
+            </div>
+        </div>
+        <p class="footer-description">&copy; 2024 The Lavish Laundry. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
