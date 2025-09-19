@@ -325,9 +325,9 @@ html {
             margin-bottom: 5px;
         }
 
-        .book-now input {
+        .book-now input, #name123 {
             padding: 12px 15px;
-            border: 1px solid #ddd;
+            border: 1px solid black;
             border-radius: 5px;
             font-size: 16px;
             margin-bottom: 10px;

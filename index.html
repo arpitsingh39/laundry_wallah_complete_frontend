@@ -132,7 +132,7 @@
                     <h3>Book Now</h3>
                     <form id="booking-form">
                         <label for="name">Full Name</label>
-                        <input type="text" id="name" placeholder="John Doe" required>
+                        <input type="text" id="name123" placeholder="John Doe" required>
 
                         <label for="email">Email ID</label>
                         <input type="email" id="email" placeholder="john.doe@example.com" required>
@@ -230,6 +230,13 @@
         <p class="footer-description">&copy; 2024 The Lavish Laundry. All rights reserved.</p>
     </footer>
 
-    <script src="script.js"></script>
+    
+    <!-- Load EmailJS SDK first -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+<!-- Then your custom JS -->
+<script src="script.js"></script>
+
+
 </body>
 </html>
