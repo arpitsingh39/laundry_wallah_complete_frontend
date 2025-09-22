@@ -92,13 +92,15 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Prepare template parameters
     const templateParams = {
-      customer_name: userName,
-      customer_email: userEmail,
-      customer_phone: phone,
-      total_amount: totalPrice,
-      items: itemsText,
-      message: "Your booking is confirmed. Thank you for choosing our services!"
-    };
+    to_email: userEmail,        // dynamically send to user email
+    customer_name: userName,
+    customer_email: userEmail,
+    customer_phone: phone,
+    total_amount: totalPrice,
+    items: itemsText,
+    message: "Your booking is confirmed. Thank you for choosing our services!"
+  };
+
 
     // Send email via EmailJS
     emailjs.send("service_nd3yr4a", "template_jb8g6qm", templateParams)
