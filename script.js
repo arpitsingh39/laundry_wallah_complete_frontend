@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
   if (window.emailjs) {
-    emailjs.init("LKSegN38ycoUfoq57"); // your public key
+    emailjs.init("LKSegN38ycoUfoq57"); // Your public key
   }
 
   const cartItems = [];
@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const totalElement = document.getElementById('total-price');
   const bookingForm = document.getElementById('booking-form');
 
+  // Add/remove services to cart
   document.querySelectorAll('.add-to-cart-btn').forEach(button => {
     button.addEventListener('click', function() {
       const service = this.dataset.service;
@@ -16,17 +17,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
       if (index === -1) {
         cartItems.push({ service, price });
-        this.textContent = 'Remove Item';
+        this.textContent = `Remove ${service}`;
         this.classList.add('remove-btn');
       } else {
         cartItems.splice(index, 1);
-        this.textContent = 'Add Item';
+        this.textContent = `Add ${service} - ₹${price}`;
         this.classList.remove('remove-btn');
       }
       updateCart();
     });
   });
 
+  // Update cart table
   function updateCart() {
     cartTable.innerHTML = '';
     let total = 0;
@@ -43,6 +45,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     totalElement.textContent = total.toFixed(2);
 
+    // Remove button inside cart table
     document.querySelectorAll('.remove-item-btn').forEach(btn => {
       btn.addEventListener('click', function() {
         const service = this.dataset.service;
@@ -51,7 +54,7 @@ document.addEventListener('DOMContentLoaded', function() {
           cartItems.splice(index, 1);
           const btnInList = document.querySelector(`.add-to-cart-btn[data-service="${service}"]`);
           if (btnInList) {
-            btnInList.textContent = 'Add Item';
+            btnInList.textContent = `Add ${service} - ₹${btnInList.dataset.price}`;
             btnInList.classList.remove('remove-btn');
           }
           updateCart();
@@ -60,11 +63,14 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   }
 
+  // Prepare text for email
   function getCartItemsText() {
     if (cartItems.length === 0) return 'No items';
+    // send plain numbers for EmailJS; formatting in template
     return cartItems.map((it, i) => `${i + 1}. ${it.service} - ${it.price}`).join('\n');
   }
 
+  // Booking form submission
   bookingForm.addEventListener('submit', function(e) {
     e.preventDefault();
 
@@ -74,17 +80,17 @@ document.addEventListener('DOMContentLoaded', function() {
     const totalPrice = totalElement.textContent;
     const itemsText = getCartItemsText();
 
-    // ✅ Basic validation
+    // Validate all fields
     if (!userName || !userEmail || !phone) {
       alert('Please fill all your details.');
       return;
     }
-
     if (cartItems.length === 0) {
       alert('Please add at least one service to your cart.');
       return;
     }
 
+    // Prepare template parameters
     const templateParams = {
       customer_name: userName,
       customer_email: userEmail,
@@ -94,14 +100,17 @@ document.addEventListener('DOMContentLoaded', function() {
       message: "Your booking is confirmed. Thank you for choosing our services!"
     };
 
+    // Send email via EmailJS
     emailjs.send("service_nd3yr4a", "template_jb8g6qm", templateParams)
       .then(() => {
-        alert(`✅ Booking successful! A confirmation email has been sent.\n\nBooking Details:\nName: ${userName}\nEmail: ${userEmail}\nPhone: ${phone}\nTotal Amount: ₹${totalPrice}\nItems:\n${itemsText}`);
+        alert(`✅ Booking successful! Confirmation email sent.\n\nBooking Details:\nName: ${userName}\nEmail: ${userEmail}\nPhone: ${phone}\nTotal Amount: ₹${totalPrice}\nItems:\n${itemsText}`);
+
+        // Reset form and cart
         bookingForm.reset();
         cartItems.length = 0;
         updateCart();
         document.querySelectorAll('.add-to-cart-btn').forEach(b => {
-          b.textContent = 'Add Item';
+          b.textContent = `Add ${b.dataset.service} - ₹${b.dataset.price}`;
           b.classList.remove('remove-btn');
         });
       })
