@@ -62,15 +62,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
   function getCartItemsText() {
     if (cartItems.length === 0) return 'No items';
-    return cartItems.map((it, i) => `${i + 1}. ${it.service} - ₹${it.price}`).join('\n');
+    return cartItems.map((it, i) => `${i + 1}. ${it.service} - ${it.price}`).join('\n');
   }
 
   bookingForm.addEventListener('submit', function(e) {
     e.preventDefault();
-    if (cartItems.length === 0) {
-      alert('Please add at least one service to your cart.');
-      return;
-    }
 
     const userName = document.getElementById('name123').value.trim();
     const userEmail = document.getElementById('email').value.trim();
@@ -78,8 +74,18 @@ document.addEventListener('DOMContentLoaded', function() {
     const totalPrice = totalElement.textContent;
     const itemsText = getCartItemsText();
 
+    // ✅ Basic validation
+    if (!userName || !userEmail || !phone) {
+      alert('Please fill all your details.');
+      return;
+    }
+
+    if (cartItems.length === 0) {
+      alert('Please add at least one service to your cart.');
+      return;
+    }
+
     const templateParams = {
-      to_name: userName,
       customer_name: userName,
       customer_email: userEmail,
       customer_phone: phone,
@@ -90,16 +96,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     emailjs.send("service_nd3yr4a", "template_jb8g6qm", templateParams)
       .then(() => {
-        alert(`✅ Booking successful! A confirmation email has been sent.
-        
-📌 Booking Details:
-Name: ${userName}
-Email: ${userEmail}
-Phone: ${phone}
-Total Amount: ₹${totalPrice}
-Items:
-${itemsText}`);
-        
+        alert(`✅ Booking successful! A confirmation email has been sent.\n\nBooking Details:\nName: ${userName}\nEmail: ${userEmail}\nPhone: ${phone}\nTotal Amount: ₹${totalPrice}\nItems:\n${itemsText}`);
         bookingForm.reset();
         cartItems.length = 0;
         updateCart();
@@ -109,8 +106,9 @@ ${itemsText}`);
         });
       })
       .catch(err => {
-        console.error(err);
-        alert('Booking saved, but email failed.');
+        console.error('EmailJS error:', err);
+        if (err.text) console.error('Details:', err.text);
+        alert('Booking saved, but email failed. Check console for details.');
       });
   });
 });
