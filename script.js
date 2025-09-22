@@ -33,7 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
     cartItems.forEach((item, i) => {
       const row = document.createElement('tr');
       row.innerHTML = `
-        <td>${i+1}</td>
+        <td>${i + 1}</td>
         <td>${item.service}</td>
         <td>₹${item.price.toFixed(2)}</td>
         <td><button class="remove-item-btn" data-service="${item.service}">Remove</button></td>
@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   function getCartItemsText() {
     if (cartItems.length === 0) return 'No items';
-    return cartItems.map((it, i) => `${i+1}. ${it.service} - ₹${it.price}`).join('\n');
+    return cartItems.map((it, i) => `${i + 1}. ${it.service} - ₹${it.price}`).join('\n');
   }
 
   bookingForm.addEventListener('submit', function(e) {
@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', function() {
       return;
     }
 
-    const userName = document.getElementById('name').value.trim();
+    const userName = document.getElementById('name123').value.trim();
     const userEmail = document.getElementById('email').value.trim();
     const phone = document.getElementById('phone').value.trim();
     const totalPrice = totalElement.textContent;
@@ -80,16 +80,26 @@ document.addEventListener('DOMContentLoaded', function() {
 
     const templateParams = {
       to_name: userName,
-      to_email: userEmail, // IMPORTANT: your EmailJS template "To" field must be {{to_email}}
-      phone,
-      total: totalPrice,
+      customer_name: userName,
+      customer_email: userEmail,
+      customer_phone: phone,
+      total_amount: totalPrice,
       items: itemsText,
       message: "Your booking is confirmed. Thank you for choosing our services!"
     };
 
     emailjs.send("service_nd3yr4a", "template_jb8g6qm", templateParams)
       .then(() => {
-        alert('✅ Booking successful! A confirmation email has been sent.');
+        alert(`✅ Booking successful! A confirmation email has been sent.
+        
+📌 Booking Details:
+Name: ${userName}
+Email: ${userEmail}
+Phone: ${phone}
+Total Amount: ₹${totalPrice}
+Items:
+${itemsText}`);
+        
         bookingForm.reset();
         cartItems.length = 0;
         updateCart();
